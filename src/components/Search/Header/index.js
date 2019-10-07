@@ -41,7 +41,7 @@ function Header(props){
        
        
       </NavDropdown>
-      <Nav.Link href="#" active>Iniciar sesion</Nav.Link>
+      <Nav.Link href="/Login" active>Iniciar sesion</Nav.Link>
         
       <Nav.Link href="/Registro" active>Registarse </Nav.Link>
      

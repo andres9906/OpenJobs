@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import NavDropdown from 'react-bootstrap/NavDropdown'
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 
 
@@ -20,7 +20,7 @@ function Header(props){
     return(
 <>
 <Navbar class=" justify-content-between" bg="#" variant="dark" className="nav" style={{backgroundColor : '#3b83bd'}}>
-<Navbar.Brand href="#home">OpenJobs</Navbar.Brand>
+<Navbar.Brand href="/">OpenJobs</Navbar.Brand>
 <Nav className="mr-auto">
 <Form inline >
    
@@ -41,9 +41,8 @@ function Header(props){
        
        
       </NavDropdown>
-      <Nav.Link href="#" active>Iniciar sesion</Nav.Link>
-        
-      <Nav.Link href="/Registro" active>Registarse </Nav.Link>
+      <Nav.Link href="/Login" active>Iniciar sesion</Nav.Link>
+      <Nav.Link href="/Registro" active>Registrarse </Nav.Link>
      
     </Nav>
  
