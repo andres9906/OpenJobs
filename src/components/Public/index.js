@@ -6,6 +6,7 @@ import Register from './Registro';
 import Header from './Header';
 import Login from './Login';
 import RecuperarPass from'./RecuperarPass';
+import Footer from  './../Footer';
 
 
 
@@ -25,6 +26,7 @@ function Public(props) {
      <Route path="/Registro" render={()=><Register setAuthentication={props.setAuthentication} />}></Route>
      <Route path="/Login" render={()=><Login setAuthentication={props.setAuthentication} />}></Route>
     <Route path="/RecuperarContraseña" exact component={RecuperarPass}></Route>
+
      </BrowserRouter>
 
     </main>);

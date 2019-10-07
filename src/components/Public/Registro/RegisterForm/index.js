@@ -24,14 +24,26 @@ function RegistroForm(props){
 
     }
   
-return(<div className="main">
+return(
+<div class="Registro">
 
   <form onSubmit={handleSubmit}>
-    <input type="text" placeholder="Nombre" value={nombre} onchange={e=>setNom(e.target.value)} ></input>
-    <input type="text" placeholder="Apellido" value={apellido} onchange={e=>setApellido(e.target.value)}></input>
-    <input type="email"placeholder="email" value={email}  onChange={e => setEmail(e.target.value)}></input>
-    <input type="password" placeholder="password" value={password} onChange={e => setPass(e.target.value)}></input>
-    <button type="submit" >algo</button>
+    <div>
+    <input type="text"  value={nombre} onchange={e=>setNom(e.target.value)} />
+    <label>Nombre</label>
+    </div>
+    <div>
+    <input type="text"  value={apellido} onchange={e=>setApellido(e.target.value)}></input>
+    <label>Apellido</label>
+    </div>
+   <div> <input type="email"value={email}  onChange={e => setEmail(e.target.value)}></input>
+   <label>Email</label>
+   </div>
+   <div>
+    <input type="password" value={password} onChange={e => setPass(e.target.value)}></input>
+    <label>Password</label>
+    </div>
+    <input type="submit" value="Registrarse" ></input>
   </form>
 </div>);
 
