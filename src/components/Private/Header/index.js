@@ -3,9 +3,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import NavDropdown from 'react-bootstrap/NavDropdown'
 import Button from 'react-bootstrap/Button';
-
+import {signout} from '../../../config/firebase';
 
 import {
 withRouter
@@ -16,6 +16,9 @@ withRouter
 
 
 function Header(props){
+  const signout = () => {
+    props.setAuthentication(false);
+  }
  const {history}=props; 
     return(
 <>
@@ -41,8 +44,9 @@ function Header(props){
        
        
       </NavDropdown>
-      <Nav.Link href="/Login" active>Iniciar sesion</Nav.Link>
-      <Nav.Link href="/Registro" active>Registrarse </Nav.Link>
+      <Nav.Link href="/Perfil" active>Tu perfil</Nav.Link>
+        
+      <Nav.Link href="/" active onClick={signout}>Log out </Nav.Link>
      
     </Nav>
  

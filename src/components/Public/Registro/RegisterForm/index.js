@@ -1,6 +1,6 @@
 import React ,{useState} from 'react';
 import ReactDOM from 'react-dom';
-import {signup} from '../../../config/firebase'
+import {signup} from './../../../../config/firebase';
 
 
 
@@ -14,7 +14,7 @@ function RegistroForm(props){
     if(email&&password){
       signup(email,password)
       .then(user =>{
-        console.log("lo creo")
+        props.setAuthentication(true);
            sessionStorage.setItem('user',user.user.uid);
             
         }).catch(err=>{

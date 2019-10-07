@@ -1,30 +1,40 @@
-import React from 'react';
-import Home from './Home';
-import Search from './Search';
-import Detail from './Detalle'
-import Register from './Registro';
-import Login from './../Public/Login';
-import Recuperar from './../Public/RecuperarPass';
+import React, { useState, useEffect } from 'react';
+import Public from './Public';
+import Private from './Private';
+import {signout} from './../config/firebase'
 
 
-import { BrowserRouter, Route} from 'react-router-dom';
 
-class App extends React.Component {
-  render(){
-    return(
-    <main className="main">
-     
-     <BrowserRouter>
-     <Route path="/" exact component={Home}></Route>
-     <Route path="/Search" exact component={Search}></Route>
-     <Route path="/Search/Detail" exact component={Detail}></Route>
-     <Route path="/Registro" exact component={Register}></Route>
-     <Route path="/Login" component={Login}></Route>
-     <Route path="/RecuperarContraseña" component={Recuperar}></Route>
-     </BrowserRouter>
 
-    </main>);
+
+function App() {
+  const [isAuth, setIsAuth] = useState(false);
+  useEffect(() => {
+    const uid = sessionStorage.getItem("user");
+    uid !== null && setIsAuth(true);
+  },[isAuth]);
+
+  const setAuthentication = val => { 
+    if(!val){
+      signout();
+      sessionStorage.clear();
+    }  
+    setIsAuth(val);
   }
+
+
+  return (
+    <main>     {
+      isAuth ?
+      
+        <Private setAuthentication={setAuthentication} />
+        :
+        <Public setAuthentication={setAuthentication} />
+    }
+    </main>
+
+  );
+
 }
 
 export default App;

@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 //import Private from './Private';
 
 import theme from './theme';
+
 import { signout } from './services/firebase';
 
 function EstadoAuth() {
