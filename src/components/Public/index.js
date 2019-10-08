@@ -10,6 +10,7 @@ import Footer from  './../Footer';
 
 
 
+
 import { BrowserRouter, Route} from 'react-router-dom';
 
 function Public(props) {
@@ -26,6 +27,7 @@ function Public(props) {
      <Route path="/Registro" render={()=><Register setAuthentication={props.setAuthentication} />}></Route>
      <Route path="/Login" render={()=><Login setAuthentication={props.setAuthentication} />}></Route>
     <Route path="/RecuperarContraseña" exact component={RecuperarPass}></Route>
+   
 
      </BrowserRouter>
 

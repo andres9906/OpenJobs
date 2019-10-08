@@ -1,0 +1,24 @@
+.Publicar{
+padding-top: 10px;
+
+.cont{
+    
+    width: 80%;
+  border: solid 1px lightgray;
+  margin: auto;
+  
+  border-radius: 10px;
+  overflow: hidden;
+  
+  .todo {
+    padding: 60px;
+   label{
+    text-align: right;
+    color: #999;
+    font-weight: bold;
+   }
+   h5 {
+    color: #3483fa !important;
+  }
+  }
+}}

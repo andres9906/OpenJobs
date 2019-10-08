@@ -6,6 +6,8 @@ import Search from './../Search';
 import Detail from './../Detalle';
 
 
+import Usuario from './Usuario'
+import Publicar from './Publicar'
 
 
 
@@ -28,6 +30,8 @@ function Private(props) {
      
      <Route path="/Search/Detail" exact component={Detail}></Route>
      <Route path="/Search" exact component={Search}></Route>
+     <Route path="/Usuario" exact component={Usuario}></Route>
+    <Route path="/Publicar" exact component={Publicar}></Route>
      </BrowserRouter>
 
     </main>);
