@@ -25,7 +25,7 @@ function RegistroForm(props){
         props.setAuthentication(true);
         console.log("Entrooo")
            sessionStorage.setItem('user',user.user.uid);
-           history.push("/Usuario")
+           history.push("/Usuario");
            window.onload = timedRefresh(100);
            setTimeout(()=>{
              

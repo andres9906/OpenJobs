@@ -65,7 +65,7 @@ function Login(props) {
   <input type="password" value={password} onChange={e => setPass(e.target.value)}required/>
   <label>Password</label>
   </div>
-  <input type="submit" value="Registrarse" ></input>
+  <input type="submit" value="Iniciar sesión" ></input>
 
 </form>
 

@@ -65,7 +65,7 @@ function RecuperarPass(props) {
  
  </div>
  
- <input type="submit" value="Recordar" ></input>
+ <input type="submit" value="Recuperar" ></input>
  </form>
  <Alert variant={variant} show={open}>
 {mens}

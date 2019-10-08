@@ -1,4 +1,14 @@
 # OpenJobs
+# Instalación 
+ > **Nota:** Debe tener instalado node para poder usar el sistema de gestión de paquetes **npm**
+ 1. Descargar o clonar repositorio a una carpeta vacía
+ 2. Entrar al proyecto en la línea de comando y ejecutar:
+ > npm install
+ 3. Cuando termine de instalar los componentes podemos ejecutar la aplicación en un ambiente de trabajo local. Para esto debe ejecutar:
+ > npm start
+ 
+ > **Nota:** Si después del paso anterior ocurre un error con el puerto que es escogido por defecto, saldrá un mensaje de aviso esperando confirmación para utilizar otro puerto, escribe `yes` y das enter.
+
 # Requerimientos
 - Registro trabajadores 
 - Registro empleador   
