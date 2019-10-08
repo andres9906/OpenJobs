@@ -4,12 +4,12 @@ import RegistroForm from './../RegisterForm'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function RegF (){
+function RegF (props){
   
     return(
     <main className="RegF" style={{backgroundColor: '#EBEFF2',paddingBottom: '100%'}}>
       
-      <RegistroForm></RegistroForm>
+      <RegistroForm setAuthentication={props.setAuthentication}></RegistroForm>
      
 
     </main>);

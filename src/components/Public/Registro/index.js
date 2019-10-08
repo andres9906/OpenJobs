@@ -4,12 +4,12 @@ import RegF from './RegF'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Registro (){
+function Registro (props){
   
     return(
     <main className="main" >
     
-      <RegF></RegF>
+      <RegF setAuthentication={props.setAuthentication}></RegF>
      
 
     </main>);

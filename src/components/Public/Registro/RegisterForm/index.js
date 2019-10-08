@@ -17,12 +17,13 @@ function RegistroForm(props){
   const[apellido,setApellido]=React.useState('')
   const[password,setPass]=React.useState('')
   const handleSubmit=(evt)=>{
- 
+    
     evt.preventDefault()
     if(email&&password){
       signup(email,password)
       .then(user =>{
         props.setAuthentication(true);
+        console.log("Entrooo")
            sessionStorage.setItem('user',user.user.uid);
            history.push("/Usuario")
            window.onload = timedRefresh(100);
@@ -63,16 +64,16 @@ return(
     <input type="text"  value={nombre} onChange={e=>setNom(e.target.value)}required />
     <label>Nombre</label>
     </div>
-    <div>
-    <input type="Email"  value={email} onChange={e=>setEmail(e.target.value)}required />
-    <label>Email</label>
-    </div>
+    
    
     <div>
     <input type="text"  value={apellido} onChange={e=>setApellido(e.target.value)}required />
     <label>Apellido</label>
     </div>
-   
+    <div>
+    <input type="Email"  value={email} onChange={e=>setEmail(e.target.value)}required />
+    <label>Email</label>
+    </div>
     <div>
     <input type="password"  value={password} onChange={e=>setPass(e.target.value) }required />
     <label>Contraseña</label>
