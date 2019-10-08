@@ -13,10 +13,9 @@ function timedRefresh(timeoutPeriod) {
 function Login(props) {
   const {history}=props
   const [open, setOpen] = React.useState(false);
-  const[incm,setincm]=React.useState(false)
-  const[mens,setMens]=React.useState('')
+ const[mens,setMens]=React.useState('')
   
-  const [email, setEmail] = React.useState('');
+ const[email,setEmail]=React.useState('') 
   const [password, setPass] =React.useState('');
 
   const handleSubmit = (evt) => {
@@ -51,34 +50,35 @@ function Login(props) {
 
   
   return (<div style={{backgroundColor:'black'}}>
-    <div className="login">
+    <div class="login">
       
        
 
 <form onSubmit={handleSubmit}>
  
  
- <div> <input type="email"value={email}    onChange={e => setEmail(e.target.value)}required></input>
- <label>Email</label>
- </div>
+<div>
+    <input type="Email"  value={email} onChange={e=>setEmail(e.target.value)}required />
+    <label>Email</label>
+    </div>
  <div>
-  <input type="password" value={password} onChange={e => setPass(e.target.value)}required></input>
+  <input type="password" value={password} onChange={e => setPass(e.target.value)}required/>
   <label>Password</label>
   </div>
   <input type="submit" value="Registrarse" ></input>
-  <a href="/RecuperarContraseña">Recurperar contraseña</a>
-  <br></br>
-  <a href="/Registro">Crear cuenta</a>
+
 </form>
 
        
-      
-      
-      
-  </div>
+        <a href="/RecuperarContraseña">Recurperar contraseña</a>
+  <br></br>
+  <a href="/Registro">Crear cuenta</a>
   <Alert variant="danger" show={open}>
 {mens}
 </Alert>
+      
+  </div>
+
 
   </div>
   );

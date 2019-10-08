@@ -1,5 +1,5 @@
 import React, { useState}  from 'react';
-import {Link} from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
 
 
 
@@ -11,27 +11,43 @@ function RecuperarPass(props) {
         props.history.push("/");
     }
 
-  const [variant, setVariant] = React.useState('');
-  const [message, setMessage] = React.useState('');
+  
+  const [mens, setMessage] = React.useState('');
+  const [variant,setVariant]=React.useState('');
   const [open, setOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+
   
   const [email, setEmail] = useState('');
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    setLoading(true);
+  
     if(email){
       recuperarPass(email)
       .then( () =>{
-        
+        setVariant('success')
           setTimeout(()=>{
-          }, 2000); 
+            setMessage('')
+            setOpen(false);
+          }, 2000);
+        setMessage('Verfique su correo');
+        setOpen(true); 
+
       })
       .catch(err=>{
+        setVariant('danger')
         setTimeout(()=>{
+          setMessage('')
+          setOpen(false);
+        }, 2000);
+      setMessage('Error con el correo');
+      setOpen(true); 
+
+        
          
-        }, 2000);  
+         
+
+        
       });
     }else{
      
@@ -51,6 +67,9 @@ function RecuperarPass(props) {
  
  <input type="submit" value="Recordar" ></input>
  </form>
+ <Alert variant={variant} show={open}>
+{mens}
+</Alert>
        </div>
   );
 }

@@ -1,24 +1,55 @@
 import React ,{useState} from 'react';
 import ReactDOM from 'react-dom';
 import {signup} from './../../../../config/firebase';
-
-
+import Alert from 'react-bootstrap/Alert'
+import {withRouter} from 'react-router-dom';
+function timedRefresh(timeoutPeriod) {
+	setTimeout("location.reload(true);",timeoutPeriod);
+}
 
 function RegistroForm(props){
-  const[email,setEmail]=useState('')
-  const[nombre,setNom]=useState('')
-  const[apellido,setApellido]=useState('')
-  const[password,setPass]=useState('')
+  const{history}=props
+  const[email,setEmail]=React.useState('')
+  const[nombre,setNom]=React.useState('')
+  const [open, setOpen] = React.useState(false);
+  const[mens,setMens]=React.useState('')
+   
+  const[apellido,setApellido]=React.useState('')
+  const[password,setPass]=React.useState('')
   const handleSubmit=(evt)=>{
+ 
     evt.preventDefault()
     if(email&&password){
       signup(email,password)
       .then(user =>{
         props.setAuthentication(true);
            sessionStorage.setItem('user',user.user.uid);
-            
+           history.push("/Usuario")
+           window.onload = timedRefresh(100);
+           setTimeout(()=>{
+             
+           }, 2000);     
         }).catch(err=>{
-          console.log(err)
+         
+          if(password.length<6){
+            
+        setTimeout(()=>{
+          setMens('')
+      setOpen(false)
+        }, 2000); 
+            setMens("La contraseña debe ser de al menos 6 caracteres");
+            setOpen(true);
+          }
+          if(err.message=="The email address is already in use by another account."){
+            setTimeout(()=>{
+              setMens('')
+          setOpen(false)
+            }, 2000); 
+                setMens("El email esta en uso");
+                setOpen(true);
+          }
+         
+          
           }, 2000); 
         }
 
@@ -28,27 +59,34 @@ return(
 <div class="Registro">
 
   <form onSubmit={handleSubmit}>
-    <div>
-    <input type="text"  value={nombre} onchange={e=>setNom(e.target.value)} />
+  <div>
+    <input type="text"  value={nombre} onChange={e=>setNom(e.target.value)}required />
     <label>Nombre</label>
     </div>
     <div>
-    <input type="text"  value={apellido} onchange={e=>setApellido(e.target.value)}></input>
+    <input type="Email"  value={email} onChange={e=>setEmail(e.target.value)}required />
+    <label>Email</label>
+    </div>
+   
+    <div>
+    <input type="text"  value={apellido} onChange={e=>setApellido(e.target.value)}required />
     <label>Apellido</label>
     </div>
-   <div> <input type="email"value={email}  onChange={e => setEmail(e.target.value)}></input>
-   <label>Email</label>
-   </div>
-   <div>
-    <input type="password" value={password} onChange={e => setPass(e.target.value)}></input>
-    <label>Password</label>
+   
+    <div>
+    <input type="password"  value={password} onChange={e=>setPass(e.target.value) }required />
+    <label>Contraseña</label>
     </div>
     <input type="submit" value="Registrarse" ></input>
   </form>
+  <a href="/Login">Ya tienes cuenta?</a>
+  <Alert variant="danger" show={open}>
+{mens}
+</Alert>
 </div>);
 
 }
-export default RegistroForm; 
+export default withRouter(RegistroForm); 
 /**
   constructor(props){
     super(props)

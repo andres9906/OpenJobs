@@ -44,7 +44,8 @@ function Header(props){
        
        
       </NavDropdown>
-      <Nav.Link href="/Perfil" active>Tu perfil</Nav.Link>
+      <Nav.Link href="/About" active>Acerca</Nav.Link>
+      <Nav.Link href="/Usuario" active>Tu perfil</Nav.Link>
         
       <Nav.Link href="/" active onClick={signout}>Log out </Nav.Link>
      

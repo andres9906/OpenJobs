@@ -13,14 +13,6 @@ return(
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item>
-    <img src={require('./img/images.jpg')}  />
-  
-      <Carousel.Caption>
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </Carousel.Caption>
-    </Carousel.Item>
-    <Carousel.Item>
     <img src={require('./img/descarga1.jpg')}  />
   
       <Carousel.Caption>
@@ -28,6 +20,15 @@ return(
         <p>La mejor atencion para los niños</p>
       </Carousel.Caption>
     </Carousel.Item>
+    <Carousel.Item>
+    <img src={require('./img/images.jpg')}  />
+  
+      <Carousel.Caption>
+        <h3>Buscar otra imangen</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </Carousel.Caption>
+    </Carousel.Item>
+   
   </Carousel>);
 
 }

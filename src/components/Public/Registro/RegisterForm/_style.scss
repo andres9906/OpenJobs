@@ -23,7 +23,30 @@
       cursor: pointer;
       background: #3483fa;
       color: #fff;
-    }
+    } 
+    
+      &:focus
+      {
+        &~label{
+        
+            top: -12px;
+            left: 0;
+            color: #3483fa;
+            font-size: 12px;
+          
+        }
+      }
+      &:valid{
+        &~label{
+          top: -12px;
+          left: 0;
+          color: #3483fa;
+          font-size: 12px;
+        }
+      }
+    
+  
+
     
   }
   form {
@@ -38,10 +61,5 @@
         }
     }
   }
-  input:focus ~ label {
-    top: -12px;
-    left: 0;
-    color: #3483fa;
-    font-size: 12px;
-  }
+  
 }

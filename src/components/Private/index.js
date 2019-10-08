@@ -4,7 +4,7 @@ import Header from './Header';
 import Home from './../Home';
 import Search from './../Search';
 import Detail from './../Detalle';
-
+import About from './../About'
 
 import Usuario from './Usuario'
 import Publicar from './Publicar'
@@ -32,6 +32,7 @@ function Private(props) {
      <Route path="/Search" exact component={Search}></Route>
      <Route path="/Usuario" exact component={Usuario}></Route>
     <Route path="/Publicar" exact component={Publicar}></Route>
+    <Route path="/About" exact component={About}></Route>
      </BrowserRouter>
 
     </main>);
