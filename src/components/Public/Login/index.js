@@ -6,6 +6,8 @@ import Alert from 'react-bootstrap/Alert'
 
 import {login} from './../../../config/firebase';
 import {withRouter} from 'react-router-dom';
+import {db} from './../../../config/firebase';
+
 function timedRefresh(timeoutPeriod) {
 	setTimeout("location.reload(true);",timeoutPeriod);
 }
@@ -17,6 +19,17 @@ function Login(props) {
   
  const[email,setEmail]=React.useState('') 
   const [password, setPass] =React.useState('');
+
+  //listar usuarios
+  db.collection("usuarios").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data().nombre}`);
+    });
+  });
+  
+
+
+
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -81,7 +94,24 @@ function Login(props) {
 
 
   </div>
+
+
+
+
+
+
+
+
   );
+
+
+
+
+
+
+
+
+
 }
 
 export default withRouter(Login);
