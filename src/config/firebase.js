@@ -1,5 +1,6 @@
 
-import firebase from 'firebase'
+import firebase, { firestore } from 'firebase'
+
 
 //<!-- The core Firebase JS SDK is always required and must be listed first -->
 //<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
@@ -12,22 +13,28 @@ import firebase from 'firebase'
   // Your web app's Firebase configuration
 
   var firebaseConfig = {
-    apiKey: "AIzaSyBBhR4BRThfJHcTUn7ub0C_C0lILB4BXqo",
-    authDomain: "openjobs-f9ccc.firebaseapp.com",
-    databaseURL: "https://openjobs-f9ccc.firebaseio.com",
-    projectId: "openjobs-f9ccc",
-    storageBucket: "",
-    messagingSenderId: "249224832794",
-    appId: "1:249224832794:web:211379dd86c38db7d86ea3",
-    measurementId: "G-E8WV4R1MHC"
+    apiKey: "AIzaSyAfu8WHDsfR3Mme0FQ3IT4DrH6mf6VZo6k",
+    authDomain: "mytwit-4a4ce.firebaseapp.com",
+    databaseURL: "https://mytwit-4a4ce.firebaseio.com",
+    projectId: "mytwit-4a4ce",
+    storageBucket: "mytwit-4a4ce.appspot.com",
+    messagingSenderId: "248550275860",
+    appId: "1:248550275860:web:ea486b187689d19123a001",
+    measurementId: "G-83EP5YY9XJ"
   };
   // Initialize Firebase
+
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
-  export const crearUs=(apellido,email,nombre)=>{
+ export const addU=(nombre,email)=>{
 
-return null;
-  }
+  return db.collection('Usuario').doc(email).set({Nombre:nombre});
+ }
+ export const update=(id,nombre)=>{
+   return db.collection('Usuario').doc(id).update({Nombre:nombre})
+ }
+
+  
   export const login = (email, password) => {
     return auth.signInWithEmailAndPassword(email, password);
   }
@@ -41,7 +48,10 @@ return null;
     return auth.sendPasswordResetEmail(email);
   }
 
+  require("firebase/firestore");
 
+  var db = firebase.firestore();
+ export var db = firebase.firestore();
  // firebase.analytics();
 
 

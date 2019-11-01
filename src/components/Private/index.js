@@ -5,7 +5,7 @@ import Home from './../Home';
 import Search from './../Search';
 import Detail from './../Detalle';
 import About from './../About'
-
+import UpdateU from './UpdateU';
 import Usuario from './Usuario'
 import Publicar from './Publicar'
 
@@ -13,7 +13,7 @@ import Publicar from './Publicar'
 
 
 import { BrowserRouter, Route} from 'react-router-dom';
-
+    console.log(localStorage.getItem('user'))
 function Private(props) {
  
 
@@ -33,6 +33,7 @@ function Private(props) {
      <Route path="/Usuario" exact component={Usuario}></Route>
     <Route path="/Publicar" exact component={Publicar}></Route>
     <Route path="/About" exact component={About}></Route>
+    <Route path="/Update" exact component={UpdateU}></Route>
      </BrowserRouter>
 
     </main>);
