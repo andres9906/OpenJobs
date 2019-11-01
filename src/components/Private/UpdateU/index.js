@@ -1,21 +1,15 @@
-import React, {useState}  from 'react';
+import React ,{useState} from 'react';
 import {Link} from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert'
-
-import firebase, { firestore } from 'firebase'
-
-
-
 import {update} from './../../../config/firebase';
 import {withRouter} from 'react-router-dom';
 
 
-function updateU(props) {
+function UpdateU(props) {
   const [open, setOpen] = React.useState(false)
   const[mens,setMens]=React.useState('')
   const {history}=props
-  const[email,setEmail]=React.useState('') 
-
+  const[email,setEmail]=React.useState('')
   const [password, setPass] =React.useState('');   
  
   
@@ -23,12 +17,14 @@ function updateU(props) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
    
-    if(email && password){
-      update('abjjgp3@gmail.com',email, password)
-      .then(user =>{
+    if(email){
+      update(sessionStorage.getItem('user'),email)
+      .then(email =>{
+        sessionStorage.setItem('email',email);
         setTimeout(()=>{
           setMens('')
       setOpen(false)
+      setEmail('')
         }, 2000); 
         setOpen(true)
         setMens('Funciono')
@@ -55,15 +51,15 @@ function updateU(props) {
        
 
 <form onSubmit={handleSubmit} >
- const
+ 
  
 <div>
     <input type="text" value={email} onChange={e=>setEmail(e.target.value)}required   />
     <label>Nombre</label>
     </div>
  <div>
-  <input type="text" value={password} onChange={e => setPass(e.target.value)}required />
-  <label>Apellido</label>
+  <input type="text"  />
+  <label>Email</label>
   </div>
   <input type="submit" value="Actualizar" ></input>
 
@@ -81,4 +77,4 @@ function updateU(props) {
   );
 }
 
-export default withRouter(updateU);
+export default withRouter(UpdateU);

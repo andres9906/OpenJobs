@@ -23,14 +23,18 @@ import firebase, { firestore } from 'firebase'
     measurementId: "G-83EP5YY9XJ"
   };
   // Initialize Firebase
-  const db = firebase.firestore();
+
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
- 
-  export const update=(apellido,email,nombre)=>{
+ export const addU=(nombre,email)=>{
 
-return db.collection("Usuario").doc(email).update({'Apellido':apellido,'Nombre':nombre});
-  }
+  return db.collection('Usuario').doc(email).set({Nombre:nombre});
+ }
+ export const update=(id,nombre)=>{
+   return db.collection('Usuario').doc(id).update({Nombre:nombre})
+ }
+
+  
   export const login = (email, password) => {
     return auth.signInWithEmailAndPassword(email, password);
   }
@@ -44,7 +48,10 @@ return db.collection("Usuario").doc(email).update({'Apellido':apellido,'Nombre':
     return auth.sendPasswordResetEmail(email);
   }
 
+  require("firebase/firestore");
 
+  var db = firebase.firestore();
+ export var db = firebase.firestore();
  // firebase.analytics();
 
 

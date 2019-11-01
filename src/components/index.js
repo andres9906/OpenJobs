@@ -9,11 +9,14 @@ import {signout} from './../config/firebase'
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  
   useEffect(() => {
     const uid = sessionStorage.getItem("user");
-    uid !== null && setIsAuth(true);
+    const email=sessionStorage.getItem("email");
+  
+    uid !== null && email!==null && setIsAuth(true);
   },[isAuth]);
-
+  console.log(sessionStorage.getItem('user'))    
   const setAuthentication = val => { 
     if(!val){
       signout();

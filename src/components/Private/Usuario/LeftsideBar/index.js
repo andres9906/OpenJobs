@@ -7,6 +7,7 @@ function LeftSideBar(){
 <ul>
     <li><><a href="/Search">Trabajo publicados</a></></li>
     <li><><a href="/Publicar">Publicar trabajos</a></></li>
+    <li><><a href="/Update">Actualizar</a></></li>
 
 
 </ul>
