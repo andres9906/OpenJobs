@@ -1,7 +1,8 @@
 import React ,{useState} from 'react';
 import ReactDOM from 'react-dom';
-import {signup} from './../../../../config/firebase';
+import {signup, addU} from './../../../../config/firebase';
 import Alert from 'react-bootstrap/Alert'
+
 import {withRouter} from 'react-router-dom';
 function timedRefresh(timeoutPeriod) {
 	setTimeout("location.reload(true);",timeoutPeriod);
@@ -19,17 +20,25 @@ function RegistroForm(props){
   const handleSubmit=(evt)=>{
     
     evt.preventDefault()
-    if(email&&password){
+    if(email&&password){ 
       signup(email,password)
       .then(user =>{
         props.setAuthentication(true);
+        
+        sessionStorage.setItem('user',user.user.uid);    
         console.log("Entrooo")
-           sessionStorage.setItem('user',user.user.uid);
+        
+           addU(nombre,user.user.uid,email).then(email=>{
+             var emai=email
+            sessionStorage.setItem('email',emai);
+            ;
            history.push("/Usuario");
            window.onload = timedRefresh(100);
            setTimeout(()=>{
              
-           }, 2000);     
+           }, 2000);  
+          })
+               
         }).catch(err=>{
          
           if(password.length<6){

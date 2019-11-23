@@ -1,4 +1,4 @@
-# [OpenJobs](https://openjobs-d7d47.firebaseapp.com/)
+# OpenJobs
 # Instalación 
  > **Nota:** Debe tener instalado node para poder usar el sistema de gestión de paquetes **npm**
  1. Descargar o clonar repositorio a una carpeta vacía
@@ -8,21 +8,6 @@
  > npm start
  
  > **Nota:** Si después del paso anterior ocurre un error con el puerto que es escogido por defecto, saldrá un mensaje de aviso esperando confirmación para utilizar otro puerto, escribe `yes` y das enter.
- 
-**Acceder:** [OpenJobs](https://openjobs-d7d47.firebaseapp.com/)
-# Interfaces actualmente soportadas
-- Página principal
-- Inciar sesión
-- Registrarse
-- Recuperar clave
-- Perfil de usuario
-- Página de busqueda  *
-- Acerca de
-- Publicar trabajos  *
-- Detalle del trabajo  *
-
-> **Nota:** Los items con * no están completamente funcionales pero tienen la navegabilidad completa.
-
 
 # Requerimientos
 - Registro trabajadores 

@@ -1,11 +1,14 @@
 .sec2{
 
+
+
 padding-top:50px;
 padding-left: 35%;
 padding-bottom: 10px;
 align-items: center;
     .row{
-      
+      margin-right: 0px;
+      margin-left: 0px;
         
         
            .caja{
@@ -16,6 +19,15 @@ align-items: center;
              padding: 30px;
              text-align: center;
              text-decoration: none;
+             &:hover{
+
+              background-color: #3483fa;
+              color: #fff;
+              height: 170px;
+              outline-color: #3483fa;
+              cursor: pointer;
+          
+             }
            }
 
         

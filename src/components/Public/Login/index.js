@@ -4,7 +4,7 @@ import Alert from 'react-bootstrap/Alert'
 
 
 
-import {login} from './../../../config/firebase';
+import {login,getCurrentUserEmail} from './../../../config/firebase';
 import {withRouter} from 'react-router-dom';
 function timedRefresh(timeoutPeriod) {
 	setTimeout("location.reload(true);",timeoutPeriod);
@@ -20,16 +20,21 @@ function Login(props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-   
+   console.log(email)
     if(email && password){
       login(email, password)
       .then(user =>{
+        var emai=email
+        console.log(emai)
         props.setAuthentication(true);
         sessionStorage.setItem('user',user.user.uid);
+        sessionStorage.setItem('email',emai);
+        console.log(email.value)
         history.push("/Usuario")
-        window.onload = timedRefresh(100);
+       
+        window.onload = timedRefresh(10);
         setTimeout(()=>{
-          
+        
         }, 2000); 
         
           })

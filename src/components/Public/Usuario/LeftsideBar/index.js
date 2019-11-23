@@ -2,7 +2,7 @@ import React from 'react';
 
 function LeftSideBar(){
 
-    return(<main className="left-sidebar">
+    return(<div className="left-sidebar" >
 <h1>Tu cuenta</h1>
 <ul>
     <li><><a href="/Search">Trabajo publicados</a></></li>
@@ -11,6 +11,6 @@ function LeftSideBar(){
 
 </ul>
 
-    </main>);
+    </div>);
 }
 export default LeftSideBar;

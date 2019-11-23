@@ -4,13 +4,14 @@ import Content from './Content';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Detail (){
-  
+function Detail (props){
+   
+
     return(
-    <main className="main">
+    <div className="mai" style={{height: '100%'}}>
      
-      <Content/>
-    </main>);
+     <Content auth={props.auth}/>
+    </div>);
   
 }
 
