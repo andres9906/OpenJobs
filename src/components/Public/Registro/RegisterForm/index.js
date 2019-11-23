@@ -1,93 +1,116 @@
-import React ,{useState} from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import {signup} from './../../../../config/firebase';
+import { signup, addU } from './../../../../config/firebase';
 import Alert from 'react-bootstrap/Alert'
-import {withRouter} from 'react-router-dom';
+
+import { withRouter } from 'react-router-dom';
 function timedRefresh(timeoutPeriod) {
-	setTimeout("location.reload(true);",timeoutPeriod);
+  setTimeout("location.reload(true);", timeoutPeriod);
 }
 
-function RegistroForm(props){
-  const{history}=props
-  const[email,setEmail]=React.useState('')
-  const[nombre,setNom]=React.useState('')
+function RegistroForm(props) {
+  const { history } = props
+  const [email, setEmail] = React.useState('')
+  const [nombre, setNom] = React.useState('')
   const [open, setOpen] = React.useState(false);
-  const[mens,setMens]=React.useState('')
-   
-  const[apellido,setApellido]=React.useState('')
-  const[password,setPass]=React.useState('')
-  const handleSubmit=(evt)=>{
-    
+  const [mens, setMens] = React.useState('')
+  const [cpassword, setcpassword] = useState('')
+
+  const [apellido, setApellido] = React.useState('')
+  const [password, setPass] = React.useState('')
+  const handleSubmit = (evt) => {
+
     evt.preventDefault()
-    if(email&&password){
-      signup(email,password)
-      .then(user =>{
-        props.setAuthentication(true);
-        console.log("Entrooo")
-           sessionStorage.setItem('user',user.user.uid);
-           history.push("/Usuario");
-           window.onload = timedRefresh(100);
-           setTimeout(()=>{
-             
-           }, 2000);     
-        }).catch(err=>{
-         
-          if(password.length<6){
-            
-        setTimeout(()=>{
-          setMens('')
-      setOpen(false)
-        }, 2000); 
-            setMens("La contraseña debe ser de al menos 6 caracteres");
-            setOpen(true);
-          }
-          if(err.message=="The email address is already in use by another account."){
-            setTimeout(()=>{
-              setMens('')
-          setOpen(false)
-            }, 2000); 
-                setMens("El email esta en uso");
-                setOpen(true);
-          }
-         
-          
-          }, 2000); 
-        }
+    if (cpassword == password) {
+      if (email && password) {
+        signup(email, password)
+          .then(user => {
+            props.setAuthentication(true);
 
+            sessionStorage.setItem('user', user.user.uid);
+            console.log("Entrooo")
+
+            addU(nombre, user.user.uid, email).then(email => {
+              var emai = email
+              sessionStorage.setItem('email', emai);
+              ;
+              history.push("/Usuario");
+              window.onload = timedRefresh(100);
+              setTimeout(() => {
+
+              }, 2000);
+            })
+
+          }).catch(err => {
+
+            if (password.length < 6) {
+
+              setTimeout(() => {
+                setMens('')
+                setOpen(false)
+              }, 2000);
+              setMens("La contraseña debe ser de al menos 6 caracteres");
+              setOpen(true);
+            }
+            if (err.message == "The email address is already in use by another account.") {
+              setTimeout(() => {
+                setMens('')
+                setOpen(false)
+              }, 2000);
+              setMens("El email esta en uso");
+              setOpen(true);
+            }
+
+
+          }, 2000);
+      }
+    }  else {
+      setTimeout(() => {
+        setMens('')
+        setOpen(false)
+      }, 2000);
+      setMens("Contraseñas no coinciden");
+      setOpen(true);
     }
-  
-return(
-<div class="Registro">
 
-  <form onSubmit={handleSubmit}>
-  <div>
-    <input type="text"  value={nombre} onChange={e=>setNom(e.target.value)}required />
-    <label>Nombre</label>
-    </div>
-    
-   
-    <div>
-    <input type="text"  value={apellido} onChange={e=>setApellido(e.target.value)}required />
-    <label>Apellido</label>
-    </div>
-    <div>
-    <input type="Email"  value={email} onChange={e=>setEmail(e.target.value)}required />
-    <label>Email</label>
-    </div>
-    <div>
-    <input type="password"  value={password} onChange={e=>setPass(e.target.value) }required />
-    <label>Contraseña</label>
-    </div>
-    <input type="submit" value="Registrarse" ></input>
-  </form>
-  <a href="/Login">Ya tienes cuenta?</a>
-  <Alert variant="danger" show={open}>
-{mens}
-</Alert>
-</div>);
+  }
+
+  return (
+    <div class="Registro">
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input type="text" value={nombre} onChange={e => setNom(e.target.value)} required />
+          <label>Nombre</label>
+        </div>
+
+
+        <div>
+          <input type="text" value={apellido} onChange={e => setApellido(e.target.value)} required />
+          <label>Apellido</label>
+        </div>
+        <div>
+          <input type="Email" value={email} onChange={e => setEmail(e.target.value)} required />
+          <label>Email</label>
+        </div>
+        <div>
+          <input type="password" value={password} onChange={e => setPass(e.target.value)} required />
+          <label>Contraseña</label>
+        </div>
+        <div>
+          <input type="password" value={cpassword} onChange={e => setcpassword(e.target.value)} required />
+          <label>Contraseña</label>
+        </div>
+        <input type="submit" value="Registrarse" ></input>
+      </form>
+      <a href="/Login">Ya tienes cuenta?</a>
+      <Alert variant="danger" show={open}>
+        {mens}
+      </Alert>
+    </div>);
 
 }
-export default withRouter(RegistroForm); 
+export default withRouter(RegistroForm);
 /**
   constructor(props){
     super(props)

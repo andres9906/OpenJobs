@@ -1,24 +1,61 @@
-import React from 'react';
-import ListGroup from 'react-bootstrap/ListGroup';
-import  Pagination from 'react-bootstrap/Pagination';
-import Button from 'react-bootstrap/Button';
-import ListGroupItem from 'react-bootstrap/ListGroupItem';
-function Detalle(){
-  
-    return(
-       
-    <div className="detalle">
-     
-<h1>Titulo</h1>
-<br/>
-<br/>
-<p>Lorem ipsum dolor sit amet, bibendum dui in vitae. Arcu magna libero vehicula nunc vel sociosqu. Purus rhoncus sem odio scelerisque viverra, tempus libero justo, duis fringilla gravida lacinia nulla potenti, ante scelerisque, elementum at vitae tincidunt etiam justo. Ullamcorper turpis dui dui tempus, sed fringilla aenean fusce nulla eu nec, varius sem nullam. Est a lacinia, vestibulum neque id pellentesque magna sagittis nulla, ac libero gravida viverra dignissim sed. Pede arcu tellus, pellentesque repellat eget est dolor, condimentum amet. Sed quisque, ut quis, magna ac in aptent faucibus, montes interdum sapien urna vehicula, morbi sed montes turpis volutpat nullam vitae. Maecenas sed nunc ac ac scelerisque ridiculus, sed feugiat duis nulla, lobortis non massa non sollicitudin blandit magna.
+import Media from 'react-media'
+import React, { useState, useEffect } from 'react';
+import { db } from './../../../../config/firebase';
 
-Ante elementum consequat gravida nulla donec. Ut eleifend volutpat, semper et urna nulla posuere, hendrerit ligula venenatis bibendum turpis, pellentesque et vestibulum elit, pretium convallis. Urna odio eros non elit, mi interdum ipsum, morbi tortor nobis sed, posuere sapien nulla praesent sem eget, integer at arcu neque sit. Nibh donec aliquet lacus id. Ultricies praesent habitant feugiat, sodales maiores sapien tristique, maecenas condimentum id iaculis a nibh eu, eu hymenaeos quis in sed, rutrum quis. Nostrum ac lacus felis elementum, lacus malesuada donec feugiat elementum dui lorem. Sed bibendum ullamcorper pede ut est vel, donec ridiculus porttitor suspendisse nibh nibh, urna laboriosam nibh ac.</p>
+function Detalle() {
+    const [resultado, setResultado] = React.useState([]);
+    useEffect(() => {
+        var url = new URL(window.location.href);
 
-    </div>
+        var d = url.searchParams.get("Trabajo")
+        const fetchData = async () => {
+
+            const data = await db.collection("Trabajos").doc(d).get();
+            setResultado({ ...data.data(), id: data.id });
+            
+        };
+        fetchData();
+        
+      
+
+    }, []);
+    console.log(resultado)
+    return (
+        <Media queries={{
+            small: "(max-width: 599px)",
+            medium: "(min-width: 600px) and (max-width: 1199px)",
+            large: "(min-width: 1200px)"
+          }}>
+            {matches => (
+              <>
+                {matches.small && <div className="detalle" style={{width:'400px'}}>
+
+<h1>{resultado.Nombre}</h1>
+
+<p><h3>Descripcion:</h3>{resultado.Descripcion} <br></br><h3>Sueldo:</h3>{resultado.Sueldo}</p>
+
+</div>}
+                {matches.medium && <div className="detalle" style={{width:'600px'}}>
+
+<h1>{resultado.Nombre}</h1>
+
+<p><h3>Descripcion:</h3>{resultado.Descripcion} <br></br><h3>Sueldo:</h3>{resultado.Sueldo}</p>
+
+</div>}
+                {matches.large && <p>  <div className="detalle" style={{width:'700px'}}>
+
+<h1>{resultado.Nombre}</h1>
+
+<p><h3>Descripcion:</h3>{resultado.Descripcion} <br></br><h3>Sueldo:</h3>{resultado.Sueldo}</p>
+
+</div></p>}
+              </>
+            )}
+          </Media>
+        
+      
     );
-  
+
 }
 
 export default Detalle;

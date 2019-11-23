@@ -1,33 +1,70 @@
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
+import { db } from './../../../config/firebase';
+import Aceptados from './Aceptado'
 import LeftSideBar from './LeftsideBar';
 import Trabajo from './Trabajos'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-function Usuario(){
-    return(<main className="main">
+
+function Usuario() {
+   
+  
+  const [usuario, setUsuario] = React.useState([]);
+  
+  
+  useEffect(() => {
+      var url = new URL(window.location.href);
+      
+      
+      const fetchData = async () => {
         
-        <Row >
-            <Col xs lg={2} style={{height:'10px'}}>
-          
-           <LeftSideBar/>
-           
+          const data1= await db.collection("Usuarios").doc(sessionStorage.getItem("user")).get();
+          setUsuario({...data1.data(),id:data1.id})
+         
+      };
+      fetchData();
+    
+
+
+  }, [])
+  
+    return (<div className="mai">
+       
+        <Row  style={{height:'100%', marginLeft: '0px',marginRight: '0px'}} >
+            <Col style={{height:'auto'  ,paddingLeft:'0px'}}>
+
+                <LeftSideBar />
+
             </Col>
             <Col >
-            <h2>Trabajos publicados</h2>
-            <hr></hr>
-           
-           
-                <Trabajo></Trabajo>
-       
-           
-                <h2>Trabajos aceptados</h2>
-            <hr ></hr>
-            <Trabajo></Trabajo>
+                <Row style={{
+    marginLeft: '0px',marginRight: '0px'
+}}>
+                    <h2>Trabajos publicados</h2>
+                    <br/>
+                    <hr></hr>
+                    <hr></hr>
+
+
+                    <Trabajo > </Trabajo>
+                </Row>
+                <Row style={{
+    marginLeft: '0px',marginRight: '0px'
+}}>
+                    <h2>Trabajos Aceptado</h2>
+                    <br/>
+                    <hr></hr>
+                    <hr></hr>
+
+
+                    <Aceptados> </Aceptados>
+                </Row>
             </Col>
             <Col>
-            <h1>Usuario</h1></Col>
+<h1>{usuario.Nombre}</h1></Col>
         </Row>
-    </main>);
+    </div>);
 }
 export default Usuario;

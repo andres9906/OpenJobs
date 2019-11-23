@@ -9,11 +9,14 @@ import {signout} from './../config/firebase'
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  
   useEffect(() => {
     const uid = sessionStorage.getItem("user");
-    uid !== null && setIsAuth(true);
+    const email=sessionStorage.getItem("email");
+  
+    uid !== null && email!==null && setIsAuth(true);
   },[isAuth]);
-
+ 
   const setAuthentication = val => { 
     if(!val){
       signout();
@@ -27,9 +30,9 @@ function App() {
     <main>     {
       isAuth ?
       
-        <Private setAuthentication={setAuthentication} />
+        <Private auth={isAuth}setAuthentication={setAuthentication} />
         :
-        <Public setAuthentication={setAuthentication} />
+        <Public auth={isAuth} setAuthentication={setAuthentication} />
     }
     </main>
 
